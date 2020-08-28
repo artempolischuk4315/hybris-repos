@@ -9,3 +9,15 @@ hybris-sbg
 idea-module-files
 installer
 licenses
+extensions/.externalToolBuilders
+extensions/.settings
+extensions/.classpath
+extensions/.project
+extensions/.springBeans
+extensions/build.xml
+extensions/classes
+extensions/extensioninfo.xsd
+extensions/platformhome.properties
+extensions/lib
+extensions/gensrc
+
