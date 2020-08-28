@@ -59,6 +59,6 @@
     <extension name='promotionengineatddtests' />
     <extension name='textfieldconfiguratortemplateatddtests' />
     <extension name='pcmbackofficesamplesaddon' />
-    <extension dir= 'C:\test\extensions\myext' />
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/myext' />
   </extensions>
 </hybrisconfig>
