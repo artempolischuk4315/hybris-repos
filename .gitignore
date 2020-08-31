@@ -24,3 +24,4 @@ extensions/*/resources/beans.xsd
 extensions/*/resources/items.xsd
 extensions/*/resources/*/*testclasses.xml
 extensions/*/web/webroot/WEB-INF/lib
+config/hybris4intellij.properties
