@@ -2,6 +2,7 @@
   <extensions>
     <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
     <extension name='mcc' />
+    <extension name="backoffice" />
     <extension name='adaptivesearchsolr' />
     <extension name='adaptivesearchbackoffice' />
     <extension name='adaptivesearchsamplesaddon' />
