@@ -89,5 +89,5 @@
         <property name="mediaService" ref="mediaService"/>
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
-			
+    <bean id = "customerDescriptionHandler" class = "org.training.handler.CustomerDescriptionHandler" />
 </beans>
