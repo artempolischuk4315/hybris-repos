@@ -24,4 +24,5 @@ extensions/*/resources/beans.xsd
 extensions/*/resources/items.xsd
 extensions/*/resources/*/*testclasses.xml
 extensions/*/web/webroot/WEB-INF/lib
+extensions/myext/src/org/training/jalo/*
 config/hybris4intellij.properties

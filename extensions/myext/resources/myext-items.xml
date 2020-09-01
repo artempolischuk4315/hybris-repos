@@ -15,6 +15,9 @@
 
 <items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 			xsi:noNamespaceSchemaLocation="items.xsd">
+	<collectiontypes>
+		<collectiontype elementtype="Part" code="PartsList" autocreate="true" generate="false" type="list"/>
+	</collectiontypes>
 
 	<itemtypes>
 
@@ -40,6 +43,41 @@
 				<attribute qualifier="customerDescription" type="java.lang.String">
 					<persistence type="dynamic" attributeHandler="customerDescriptionHandler" />
 					<modifiers read="true" write="false" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Part"
+				  autocreate="true"
+				  generate="true"
+				  extends="GenericItem">
+			<deployment table="Part" typecode="11111"/>
+			<attributes>
+				<attribute qualifier="partId" 
+						   type="java.lang.Integer">
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+
+		</itemtype>
+		
+		<itemtype code="Car"
+				  autocreate="true"
+				  generate="true"
+				  extends="GenericItem">
+			<deployment table="Car" typecode="11112"/>
+
+			<attributes>
+				<attribute qualifier="carId"
+						   type="java.lang.Integer">
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="parts" type="PartsList">
+					<model>
+						<getter name="parts" default="true" />
+						<setter name="parts" default="true" />
+					</model>
+					<persistence type="property"/>
 				</attribute>
 			</attributes>
 		</itemtype>
