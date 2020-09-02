@@ -61,5 +61,6 @@
     <extension name='textfieldconfiguratortemplateatddtests' />
     <extension name='pcmbackofficesamplesaddon' />
     <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/myext' />
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/custombackofficeext'/>
   </extensions>
 </hybrisconfig>
