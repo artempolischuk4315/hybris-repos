@@ -82,5 +82,39 @@
 			</attributes>
 		</itemtype>
 
+		<itemtype code="ExternalCustomer" 
+				  autocreate="true"
+				  generate="true">
+			<deployment table="ExternalCustomer" typecode="11113"/>
+			<attributes>
+				<attribute qualifier="innerId" type="java.lang.Integer" generate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true"/>
+				</attribute>
+				<attribute qualifier="externalId" type="java.lang.Integer" generate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true"/>
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String" generate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true"/>
+				</attribute>
+				<attribute qualifier="email" type="java.lang.String" generate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true"/>
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="innerIdEmailIdx" unique="true">
+					<key attribute="innerId" />
+					<key attribute="email" />
+				</index>
+				<index name="externalIdEmailIdx" unique="true">
+					<key attribute="externalId" />
+					<key attribute="email" />
+				</index>
+			</indexes>
+		</itemtype>
+
 	</itemtypes>
 </items>
