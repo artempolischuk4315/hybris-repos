@@ -10,7 +10,6 @@
  license agreement you entered into with SAP.
 -->
 <config xmlns="http://www.hybris.com/cockpit/config">
-
     <context component="explorer-tree" merge-by="module">
         <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
             <n:navigation-node id="hmc_treenode_medias" merge-mode="append">
@@ -42,4 +41,21 @@
         </editorArea:editorArea>
     </context>
 
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="sup" merge-mode="append">
+                <n:type-node id="hmc_typenode_supplier" code="Supplier"/>
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+    <context type="Supplier" merge-by="type" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="supplierName"/>
+            <list:column qualifier="description"/>
+            <list:column qualifier="catalogVersion"/>
+        </list:list-view>
+    </context>
+
+
 </config>
+
