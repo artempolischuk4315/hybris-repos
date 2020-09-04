@@ -41,36 +41,9 @@
         </editorArea:editorArea>
     </context>
 
-    <context component="explorer-tree" principal="marketingmanager_role">
-        <explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
-            <explorer-tree:navigation-node id="hmc_treenode_marketing" merge-mode="append">
-                <explorer-tree:navigation-node id="hmc_treenode_coupon_management" merge-mode="append">
-                    <explorer-tree:type-node id="hmc_typenode_coupons" code="AbstractCoupon" />
-                    <explorer-tree:type-node id="hmc_typenode_coupon_code_generation_config" code="CodeGenerationConfiguration"/>
-                    <explorer-tree:type-node id="hmc_type_tree_coupon_redemption" code="CouponRedemption"/>
-                </explorer-tree:navigation-node>
-            </explorer-tree:navigation-node>
-        </explorer-tree:explorer-tree>
-    </context>
-    <context component="explorer-tree" principal="marketingmanager_role">
-        <explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
-            <explorer-tree:navigation-node id="hmc_treenode_marketing">
-                <explorer-tree:navigation-node id="hmc_typenode_promotion_rules" expanded-by-default="true">
-                    <explorer-tree:type-node id="hmc_published_and_unpublished_promotion_rules_only" code="PromotionSourceRule"/>
-                    <explorer-tree:type-node id="hmc_all_promotion_rules_only" code="PromotionSourceRule"/>
-                </explorer-tree:navigation-node>
-                <explorer-tree:type-node id="hmc_typenode_promotion_rule_templates" code="PromotionSourceRuleTemplate"/>
-                <explorer-tree:type-node id="hmc_type_tree_promotiongroup" code="PromotionGroup"/>
-                <explorer-tree:type-node id="hmc_typenode_promotion_modules" code="DroolsKIEModule"/>
-                <explorer-tree:type-node id="hmc_typenode_campaign" code="Campaign" position="99"/>
-            </explorer-tree:navigation-node>
-        </explorer-tree:explorer-tree>
-    </context>
-
-
     <context component="explorer-tree" merge-by="module">
         <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
-            <n:navigation-node id="sup" merge-mode="append">
+            <n:navigation-node id="Supplier" merge-mode="append">
                 <n:type-node id="hmc_typenode_supplier" code="Supplier"/>
             </n:navigation-node>
         </n:explorer-tree>
@@ -82,6 +55,30 @@
             <list:column qualifier="catalogVersion"/>
         </list:list-view>
     </context>
+
+
+
+  <context merge-by="principal" component="explorer-tree"
+                 principal="custommarketingmanagerrole">
+            <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+                <n:navigation-node id="hmc_treenode_system" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_medias" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_catalog" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_user" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_order" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_pricesettings" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_c2l" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_solr_backoffice" merge-mode="remove"/>
+                <n:navigation-node id="hmc.cms2" merge-mode="remove"/>
+                <n:navigation-node id="hmc.cockpit" merge-mode="remove"/>
+                <n:navigation-node id="ruleengine" merge-mode="remove"/>
+                <n:navigation-node id="hmc_ticketsystemgroup" merge-mode="remove"/>
+                <n:navigation-node id="hmc.group.basecommerce" merge-mode="remove"/>
+                <n:navigation-node id="hmc.group.basecommerce.deeplink" merge-mode="remove"/>
+                <n:navigation-node id="cxnode" merge-mode="remove"/>
+                <n:navigation-node id="Supplier" merge-mode="remove"/>
+            </n:explorer-tree>
+        </context>
 
 
 </config>
