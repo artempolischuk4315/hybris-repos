@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+    <collectiontypes>
+        <collectiontype elementtype="Part" code="PartsList" autocreate="true" generate="false" type="list"/>
+    </collectiontypes>
+
+    <itemtypes>
+
+        <itemtype code="Product"
+                  autocreate="false"
+                  generate="false">
+            <attributes>
+                <attribute qualifier="additionalDescription" type="java.lang.String" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Customer"
+                  autocreate="false"
+                  generate="false">
+            <attributes>
+                <attribute qualifier="email" type="java.lang.String" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="true"/>
+                </attribute>
+                <attribute qualifier="customerDescription" type="java.lang.String">
+                    <persistence type="dynamic" attributeHandler="customerDescriptionHandler"/>
+                    <modifiers read="true" write="false"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Part"
+                  autocreate="true"
+                  generate="true"
+                  extends="GenericItem">
+            <deployment table="Part" typecode="11111"/>
+            <attributes>
+                <attribute qualifier="partId"
+                           type="java.lang.Integer">
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+
+        </itemtype>
+
+        <itemtype code="Car"
+                  autocreate="true"
+                  generate="true"
+                  extends="GenericItem">
+            <deployment table="Car" typecode="11112"/>
+
+            <attributes>
+                <attribute qualifier="carId"
+                           type="java.lang.Integer">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="parts" type="PartsList">
+                    <model>
+                        <getter name="parts" default="true"/>
+                        <setter name="parts" default="true"/>
+                    </model>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="ExternalCustomer"
+                  autocreate="true"
+                  generate="true">
+            <deployment table="ExternalCustomer" typecode="11113"/>
+            <attributes>
+                <attribute qualifier="innerId" type="java.lang.Integer" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true"/>
+                </attribute>
+                <attribute qualifier="externalId" type="java.lang.Integer" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true"/>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true"/>
+                </attribute>
+                <attribute qualifier="email" type="java.lang.String" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="innerIdEmailIdx" unique="true">
+                    <key attribute="innerId"/>
+                    <key attribute="email"/>
+                </index>
+                <index name="externalIdEmailIdx" unique="true">
+                    <key attribute="externalId"/>
+                    <key attribute="email"/>
+                </index>
+            </indexes>
+        </itemtype>
+    </itemtypes>
+</items>

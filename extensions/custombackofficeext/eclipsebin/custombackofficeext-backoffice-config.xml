@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config">
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_medias" merge-mode="append">
+                <n:type-node id="hmc_typenode_image_media" code="ImageMedia"/>
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+    <context type="ImageMedia" parent="Media" merge-by="type" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="topic"/>
+        </list:list-view>
+    </context>
+    <context merge-by="type" parent="Media" type="ImageMedia" component="simple-search">
+        <simple-search:simple-search xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch">
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="topic"/>
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="mime"/>
+        </simple-search:simple-search>
+    </context>
+
+    <context merge-by="type" parent="AbstractMedia" type="Media" component="editor-area" module="platformbackoffice">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+
+            <editorArea:tab name="hmc.tab.common">
+                <editorArea:section name="hmc.properties">
+                    <editorArea:attribute qualifier="topic"/>
+                </editorArea:section>
+            </editorArea:tab>
+
+        </editorArea:editorArea>
+    </context>
+
+    <context component="explorer-tree" merge-by="module">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="Supplier" merge-mode="append">
+                <n:type-node id="hmc_typenode_supplier" code="Supplier"/>
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+    <context type="Supplier" merge-by="type" component="listview">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="supplierName"/>
+            <list:column qualifier="description"/>
+            <list:column qualifier="catalogVersion"/>
+        </list:list-view>
+    </context>
+
+
+
+  <context merge-by="principal" component="explorer-tree"
+                 principal="custommarketingmanagerrole">
+            <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+                <n:navigation-node id="hmc_treenode_system" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_medias" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_catalog" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_user" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_order" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_pricesettings" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_c2l" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_solr_backoffice" merge-mode="remove"/>
+                <n:navigation-node id="hmc.cms2" merge-mode="remove"/>
+                <n:navigation-node id="hmc.cockpit" merge-mode="remove"/>
+                <n:navigation-node id="ruleengine" merge-mode="remove"/>
+                <n:navigation-node id="hmc_ticketsystemgroup" merge-mode="remove"/>
+                <n:navigation-node id="hmc.group.basecommerce" merge-mode="remove"/>
+                <n:navigation-node id="hmc.group.basecommerce.deeplink" merge-mode="remove"/>
+                <n:navigation-node id="cxnode" merge-mode="remove"/>
+                <n:navigation-node id="Supplier" merge-mode="remove"/>
+            </n:explorer-tree>
+        </context>
+
+
+</config>
+
