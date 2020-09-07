@@ -1,5 +1,6 @@
 package org.training.dao.impl;
 
+import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,11 @@ public class CustomProductDaoDefaultImplementation implements CustomProductDao {
     FlexibleSearchService flexibleSearchService;
 
     @Override
-    public ProductModel getProductByExample(ProductModel example) {
-       return flexibleSearchService.getModelByExample(example);
+    public ProductModel getProductByExample(String productCode, CatalogVersionModel catalogVersionModel) {
+        ProductModel productModel = new ProductModel();
+        productModel.setCode(productCode);
+        productModel.setCatalogVersion(catalogVersionModel);
+
+        return flexibleSearchService.getModelByExample(productModel);
     }
 }

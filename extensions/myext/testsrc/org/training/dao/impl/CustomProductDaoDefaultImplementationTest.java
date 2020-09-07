@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class CustomProductDaoDefaultImplementationTest extends ServicelayerTransactionalTest {
 
     @Resource
-    CustomProductDaoDefaultImplementation systemUnderTest;
+    CustomProductDaoDefaultImplementation customProductDao;
 
     @Resource
     private ModelService modelService;
@@ -22,16 +22,18 @@ public class CustomProductDaoDefaultImplementationTest extends ServicelayerTrans
 
     @Test
     public void CustomProductDaoIntegrationTest(){
+        CatalogVersionModel catalogVersionModel = new CatalogVersionModel();
+
+        ProductModel actual = customProductDao.getProductByExample(PRODUCT_CODE, catalogVersionModel);
+        assertNull(actual);
+
         ProductModel productModel = new ProductModel();
         productModel.setCode(PRODUCT_CODE);
-        productModel.setCatalogVersion(new CatalogVersionModel());
-
-        ProductModel actual = systemUnderTest.getProductByExample(productModel);
-        assertNull(actual);
+        productModel.setCatalogVersion(catalogVersionModel);
 
         modelService.save(productModel);
 
-        actual = systemUnderTest.getProductByExample(productModel);
+        actual = customProductDao.getProductByExample(PRODUCT_CODE, catalogVersionModel);
 
         assertNotNull(actual);
         assertEquals(productModel, actual);

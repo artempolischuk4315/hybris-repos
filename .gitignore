@@ -26,3 +26,4 @@ extensions/*/resources/*/*testclasses.xml
 extensions/*/web/webroot/WEB-INF/lib
 extensions/myext/src/org/training/jalo/*
 config/hybris4intellij.properties
+ImageMagick-7.0.10-Q16-HDRI
