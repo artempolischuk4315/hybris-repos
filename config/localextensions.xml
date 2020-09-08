@@ -2,6 +2,8 @@
   <extensions>
     <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
     <extension name='mcc' />
+    <extension name='mediaconversionbackoffice' />
+    <extension name='mediaconversion' />
     <extension name="backoffice" />
     <extension name='adaptivesearchsolr' />
     <extension name='adaptivesearchbackoffice' />
