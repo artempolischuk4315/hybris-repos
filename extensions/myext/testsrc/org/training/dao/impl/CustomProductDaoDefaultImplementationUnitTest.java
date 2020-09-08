@@ -40,7 +40,7 @@ public class CustomProductDaoDefaultImplementationUnitTest {
     private CatalogVersionModel catalogVersionModel;
 
     @Captor
-    ArgumentCaptor<ProductModel> captor;
+    private ArgumentCaptor<ProductModel> captor;
 
     @Test
     public void getProductByExampleShouldReturnProductModelIfExists(){
