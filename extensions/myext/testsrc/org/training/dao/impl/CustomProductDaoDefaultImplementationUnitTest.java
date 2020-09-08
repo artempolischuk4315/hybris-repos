@@ -4,48 +4,57 @@ import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static de.hybris.platform.testframework.Assert.assertEquals;
+import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomProductDaoDefaultImplementationUnitTest {
 
-    public static final String PRODUCT_CODE = "test";
+    private static final String PRODUCT_CODE = "test";
+
     @InjectMocks
-    CustomProductDaoDefaultImplementation customProductDao;
+    private CustomProductDaoDefaultImplementation customProductDao;
 
     @Mock
-    FlexibleSearchService flexibleSearchService;
+    private FlexibleSearchService flexibleSearchService;
 
     @Mock
-    ProductModel productModel;
+    private ProductModel productModel;
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    private static final CatalogVersionModel catalogVersionModel = new CatalogVersionModel();
+    @Mock
+    private CatalogVersionModel catalogVersionModel;
+
+    @Captor
+    ArgumentCaptor<ProductModel> captor;
 
     @Test
     public void getProductByExampleShouldReturnProductModelIfExists(){
-        ProductModel productModel = new ProductModel();
-        productModel.setCode(PRODUCT_CODE);
-        productModel.setCatalogVersion(catalogVersionModel);
+        when(flexibleSearchService.getModelByExample(captor.capture())).thenReturn(productModel);
 
-        when(flexibleSearchService.getModelByExample(any())).thenReturn(productModel);
+        customProductDao.getProductByExample(PRODUCT_CODE, catalogVersionModel);
 
-        ProductModel actual = customProductDao.getProductByExample(PRODUCT_CODE, catalogVersionModel);
+        verify(flexibleSearchService).getModelByExample(captor.capture());
 
-        assertEquals(productModel.getCatalogVersion(), actual.getCatalogVersion());
+        ProductModel actual = captor.getValue();
+
+        assertThat(actual.getCode()).isEqualTo(PRODUCT_CODE);
+        assertThat(actual.getCatalogVersion()).isEqualTo(catalogVersionModel);
+
     }
 
     @Test

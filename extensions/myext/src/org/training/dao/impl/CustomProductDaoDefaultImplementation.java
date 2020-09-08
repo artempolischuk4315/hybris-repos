@@ -1,6 +1,5 @@
 package org.training.dao.impl;
 
-import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
 import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
@@ -12,7 +11,7 @@ import org.training.dao.CustomProductDao;
 public class CustomProductDaoDefaultImplementation implements CustomProductDao {
 
     @Autowired
-    FlexibleSearchService flexibleSearchService;
+    private FlexibleSearchService flexibleSearchService;
 
     @Override
     public ProductModel getProductByExample(String productCode, CatalogVersionModel catalogVersionModel) {

@@ -15,12 +15,14 @@ import org.junit.rules.ExpectedException;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.Assertions.assertThat;
 
 public class CustomProductDaoDefaultImplementationIntegrationTest extends ServicelayerTransactionalTest {
 
     private static final String PRODUCT_CODE = "121221212";
     private static final String CATALOG_VERSION = "Staged";
+    private static final String CATALOG_ID = "100123131";
+    private static final String CATALOG_NAME = "test";
 
     private CatalogVersionModel catalogVersionModel;
 
@@ -39,8 +41,8 @@ public class CustomProductDaoDefaultImplementationIntegrationTest extends Servic
     @Before
     public void setup() {
         CatalogModel catalogModel = modelService.create(CatalogModel.class);
-        catalogModel.setId("100123131");
-        catalogModel.setName("test");
+        catalogModel.setId(CATALOG_ID);
+        catalogModel.setName(CATALOG_NAME);
 
         modelService.save(catalogModel);
 
@@ -49,7 +51,7 @@ public class CustomProductDaoDefaultImplementationIntegrationTest extends Servic
         catalogVersionModel.setVersion(CATALOG_VERSION);
 
         modelService.save(catalogVersionModel);
-        catalogVersionService.setSessionCatalogVersion(catalogVersionModel.getCatalog().getId(), CATALOG_VERSION);
+        catalogVersionService.setSessionCatalogVersion(CATALOG_ID, CATALOG_VERSION);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class CustomProductDaoDefaultImplementationIntegrationTest extends Servic
 
         ProductModel actual = productDao.getProductByExample(PRODUCT_CODE, catalogVersionModel);
 
-        assertEquals(productModel, actual);
+        assertThat(actual).isEqualTo(productModel);
     }
 
     @Test
