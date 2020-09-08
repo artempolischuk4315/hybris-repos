@@ -43,7 +43,10 @@
 
     <context component="explorer-tree" merge-by="module">
         <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+
+            <n:navigation-node id="Supplier" merge-mode="append">
             <n:navigation-node id="sup" merge-mode="append">
+
                 <n:type-node id="hmc_typenode_supplier" code="Supplier"/>
             </n:navigation-node>
         </n:explorer-tree>
@@ -55,6 +58,30 @@
             <list:column qualifier="catalogVersion"/>
         </list:list-view>
     </context>
+
+
+
+  <context merge-by="principal" component="explorer-tree"
+                 principal="custommarketingmanagerrole">
+            <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+                <n:navigation-node id="hmc_treenode_system" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_medias" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_catalog" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_user" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_order" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_pricesettings" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_c2l" merge-mode="remove"/>
+                <n:navigation-node id="hmc_treenode_solr_backoffice" merge-mode="remove"/>
+                <n:navigation-node id="hmc.cms2" merge-mode="remove"/>
+                <n:navigation-node id="hmc.cockpit" merge-mode="remove"/>
+                <n:navigation-node id="ruleengine" merge-mode="remove"/>
+                <n:navigation-node id="hmc_ticketsystemgroup" merge-mode="remove"/>
+                <n:navigation-node id="hmc.group.basecommerce" merge-mode="remove"/>
+                <n:navigation-node id="hmc.group.basecommerce.deeplink" merge-mode="remove"/>
+                <n:navigation-node id="cxnode" merge-mode="remove"/>
+                <n:navigation-node id="Supplier" merge-mode="remove"/>
+            </n:explorer-tree>
+        </context>
 
 
 </config>
