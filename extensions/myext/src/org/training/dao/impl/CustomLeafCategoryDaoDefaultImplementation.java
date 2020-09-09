@@ -25,8 +25,7 @@ public class CustomLeafCategoryDaoDefaultImplementation implements CustomLeafCat
         query.append("SELECT {pk} FROM {" + CategoryModel._CATEGORYCATEGORYRELATION + " AS rel ");
         query.append("JOIN " + CategoryModel._TYPECODE + " AS sub ON {rel.target}={sub.PK} } ");
         query.append("WHERE {rel:source}={cat.pk} ");
-        //query.append("}}) ");
-        query.append("AND {sub:" + CategoryModel.CATALOGVERSION + "} = {cat:" + CategoryModel.CATALOGVERSION + "}  }}) ");
+        query.append("}}) ");
         query.append("AND {cat:" + CategoryModel.CATALOGVERSION + "}=?catalogVersion");
 
         final FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(query);
