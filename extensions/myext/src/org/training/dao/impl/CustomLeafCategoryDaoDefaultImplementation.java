@@ -22,7 +22,7 @@ public class CustomLeafCategoryDaoDefaultImplementation implements CustomLeafCat
         final String queryString =
                 "SELECT {c:" + CategoryModel.PK + "}" +
                         "FROM {" + CategoryModel._TYPECODE + " AS c " +
-                        "JOIN "+ CategoryModel._CATEGORYCATEGORYRELATION +" as rel ON {c:pk} = {rel:source} } " +
+                        "LEFT JOIN "+ CategoryModel._CATEGORYCATEGORYRELATION +" as rel ON {c:pk} = {rel:source} } " +
                         "WHERE " + "{c:" + CategoryModel.CATALOGVERSION + "}=?catalogVersion AND {rel:target} IS NULL";
 
         final FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(queryString);

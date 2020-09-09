@@ -82,15 +82,8 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
 
     @Test
     public void daoShouldReturnOnlyLeafCategories() {
-        List<CategoryModel> expected = new ArrayList<>();
-
-        expected.add(thirdCategory);
-
         List<CategoryModel> actual = categoryDao.findAllLeafCategoriesByCatalogVersion(catalogVersionModel);
 
-        //assertThat(actual.get(0).getCode()).isEqualTo("leaf");
         assertThat(actual).containsExactly(thirdCategory);
-        //assertThat(actual.get(0).getCode()).isEqualTo("leaf");
- //       assertThat(actual.get(0).getCode()).isEqualTo("another");
     }
 }
