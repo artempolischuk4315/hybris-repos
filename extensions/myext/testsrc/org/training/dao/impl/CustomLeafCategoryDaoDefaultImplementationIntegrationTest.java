@@ -8,6 +8,7 @@ import de.hybris.platform.servicelayer.ServicelayerTransactionalTest;
 import de.hybris.platform.servicelayer.model.ModelService;
 import org.junit.Before;
 import org.junit.Test;
+import org.training.dao.CustomLeafCategoryDao;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -31,8 +32,9 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
     private CategoryModel secondCategory;
     private CategoryModel thirdCategory;
 
-    @Resource(name = "customLeafCategoryDao")
-    private CustomLeafCategoryDaoDefaultImplementation categoryDao;
+    @Resource(name = "customLeafCategoryDaoGenericSearch")
+    //@Resource(name = "customLeafCategoryDao")
+    private CustomLeafCategoryDao categoryDao;
 
     @Resource
     private ModelService modelService;
@@ -66,13 +68,13 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
 
         secondCategory = modelService.create(CategoryModel.class);
         secondCategory.setCode(SECOND_CODE);
-        secondCategory.setCatalogVersion(catalogVersionModel);
+        secondCategory.setCatalogVersion(secondCatalogVersionModel);
         secondCategory.setSupercategories(Collections.singletonList(firstCategory));
 
         thirdCategory = modelService.create(CategoryModel.class);
         thirdCategory.setCode(THIRD_CODE);
         thirdCategory.setCatalogVersion(catalogVersionModel);
-        thirdCategory.setSupercategories(Collections.singletonList(secondCategory));
+        //thirdCategory.setSupercategories(Collections.singletonList(secondCategory));
 
         modelService.save(firstCategory);
         modelService.save(secondCategory);
