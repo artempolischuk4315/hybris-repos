@@ -56,35 +56,42 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
 
         catalogVersionService.setSessionCatalogVersion(CATALOG_ID, CATALOG_VERSION);
 
+        //adding leaf category with another catalog version
         categoryWithAnotherCatalogVersion = modelService.create(CategoryModel.class);
         categoryWithAnotherCatalogVersion.setCode("another");
-        categoryWithAnotherCatalogVersion.setCatalogVersion(secondCatalogVersionModel);
-        modelService.save(categoryWithAnotherCatalogVersion);
+        categoryWithAnotherCatalogVersion.setCatalogVersion(catalogVersionModel);
 
+
+        //adding not leaf category with right catalog version
         notLeafCategory = modelService.create(CategoryModel.class);
         notLeafCategory.setCode("not-leaf");
         notLeafCategory.setCatalogVersion(catalogVersionModel);
         notLeafCategory.setSupercategories(Collections.singletonList(categoryWithAnotherCatalogVersion));
-        modelService.save(notLeafCategory);
 
+
+        //adding leaf category with right catalog version
         leafCategory = modelService.create(CategoryModel.class);
         leafCategory.setCode("leaf");
         leafCategory.setCatalogVersion(catalogVersionModel);
         leafCategory.setSupercategories(Collections.singletonList(notLeafCategory));
+
+        modelService.save(categoryWithAnotherCatalogVersion);
+        modelService.save(notLeafCategory);
         modelService.save(leafCategory);
 
     }
 
     @Test
-    public void daoShouldReturnOnlyLeafCategories(){
+    public void daoShouldReturnOnlyLeafCategories() {
         List<CategoryModel> expected = new ArrayList<>();
 
-        expected.add(categoryWithAnotherCatalogVersion);
-        expected.add(notLeafCategory);
         expected.add(leafCategory);
 
         List<CategoryModel> actual = categoryDao.findAllLeafCategoriesByCatalogVersion(catalogVersionModel);
 
+        //assertThat(actual.get(0).getCode()).isEqualTo("leaf");
         assertThat(actual).isEqualTo(expected);
+        //assertThat(actual.get(0).getCode()).isEqualTo("leaf");
+ //       assertThat(actual.get(0).getCode()).isEqualTo("another");
     }
 }

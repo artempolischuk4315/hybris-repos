@@ -19,14 +19,19 @@ public class CustomLeafCategoryDaoDefaultImplementation implements CustomLeafCat
     @Override
     public List<CategoryModel> findAllLeafCategoriesByCatalogVersion(CatalogVersionModel catalogVersionModel) {
 
-        final String queryString = //
-                "SELECT {p:" + CategoryModel.PK + "}" //
-                        + "FROM {" + CategoryModel._TYPECODE + " AS p} "//
-                        + "WHERE " + "{p:" + CategoryModel.CATALOGVERSION + "}=?catalogVersion";
+        final StringBuilder query = new StringBuilder("SELECT {cat." + CategoryModel.PK + "} ");
+        query.append("FROM {" + CategoryModel._TYPECODE + " AS cat} ");
+        query.append("WHERE NOT EXISTS ({{");
+        query.append("SELECT {pk} FROM {" + CategoryModel._CATEGORYCATEGORYRELATION + " AS rel ");
+        query.append("JOIN " + CategoryModel._TYPECODE + " AS sub ON {rel.target}={sub.PK} } ");
+        query.append("WHERE {rel:source}={cat.pk} ");
+        //query.append("}}) ");
+        query.append("AND {sub:" + CategoryModel.CATALOGVERSION + "} = {cat:" + CategoryModel.CATALOGVERSION + "}  }}) ");
+        query.append("AND {cat:" + CategoryModel.CATALOGVERSION + "}=?catalogVersion");
 
-        final FlexibleSearchQuery query = new FlexibleSearchQuery(queryString);
-        query.addQueryParameter("catalogVersion", catalogVersionModel);
+        final FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(query);
+        flexibleSearchQuery.addQueryParameter("catalogVersion", catalogVersionModel);
 
-        return flexibleSearchService.<CategoryModel> search(query).getResult();
+        return flexibleSearchService.<CategoryModel> search(flexibleSearchQuery).getResult();
     }
 }
