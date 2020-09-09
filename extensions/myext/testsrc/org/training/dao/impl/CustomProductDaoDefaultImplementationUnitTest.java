@@ -4,9 +4,7 @@ import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -33,9 +31,6 @@ public class CustomProductDaoDefaultImplementationUnitTest {
     @Mock
     private ProductModel productModel;
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
     @Mock
     private CatalogVersionModel catalogVersionModel;
 
@@ -51,17 +46,17 @@ public class CustomProductDaoDefaultImplementationUnitTest {
         verify(flexibleSearchService).getModelByExample(captor.capture());
 
         ProductModel actual = captor.getValue();
+        ProductModel result = customProductDao.getProductByExample(PRODUCT_CODE, catalogVersionModel);
 
         assertThat(actual.getCode()).isEqualTo(PRODUCT_CODE);
         assertThat(actual.getCatalogVersion()).isEqualTo(catalogVersionModel);
+        assertThat(result).isEqualTo(productModel);
 
     }
 
-    @Test
+    @Test(expected = ModelNotFoundException.class)
     public void shouldThrowModelNotFoundException() {
         when(flexibleSearchService.getModelByExample(any())).thenThrow(new ModelNotFoundException("Model not found"));
-
-        expectedException.expect(ModelNotFoundException.class);
 
         customProductDao.getProductByExample(PRODUCT_CODE, catalogVersionModel);
     }
