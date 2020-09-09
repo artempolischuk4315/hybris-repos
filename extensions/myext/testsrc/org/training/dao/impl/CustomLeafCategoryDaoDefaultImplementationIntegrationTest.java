@@ -20,12 +20,16 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
     private static final String CATALOG_VERSION = "Staged";
     private static final String CATALOG_ID = "100123131";
     private static final String CATALOG_NAME = "test";
+    private static final String SECOND_CATALOG_VERSION = "Online";
+    private static final String FIRST_CODE = "first";
+    private static final String SECOND_CODE = "second";
+    private static final String THIRD_CODE = "third";
 
     private CatalogVersionModel catalogVersionModel;
     private CatalogVersionModel secondCatalogVersionModel;
-    private CategoryModel notLeafCategory;
-    private CategoryModel leafCategory;
-    private CategoryModel categoryWithAnotherCatalogVersion;
+    private CategoryModel firstCategory;
+    private CategoryModel secondCategory;
+    private CategoryModel thirdCategory;
 
     @Resource(name = "customLeafCategoryDao")
     private CustomLeafCategoryDaoDefaultImplementation categoryDao;
@@ -51,33 +55,28 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
 
         secondCatalogVersionModel = modelService.create(CatalogVersionModel.class);
         secondCatalogVersionModel.setCatalog(catalogModel);
-        secondCatalogVersionModel.setVersion("Online");
+        secondCatalogVersionModel.setVersion(SECOND_CATALOG_VERSION);
         modelService.save(secondCatalogVersionModel);
 
         catalogVersionService.setSessionCatalogVersion(CATALOG_ID, CATALOG_VERSION);
 
-        //adding leaf category with another catalog version
-        categoryWithAnotherCatalogVersion = modelService.create(CategoryModel.class);
-        categoryWithAnotherCatalogVersion.setCode("another");
-        categoryWithAnotherCatalogVersion.setCatalogVersion(catalogVersionModel);
+        firstCategory = modelService.create(CategoryModel.class);
+        firstCategory.setCode(FIRST_CODE);
+        firstCategory.setCatalogVersion(catalogVersionModel);
 
+        secondCategory = modelService.create(CategoryModel.class);
+        secondCategory.setCode(SECOND_CODE);
+        secondCategory.setCatalogVersion(catalogVersionModel);
+        secondCategory.setSupercategories(Collections.singletonList(firstCategory));
 
-        //adding not leaf category with right catalog version
-        notLeafCategory = modelService.create(CategoryModel.class);
-        notLeafCategory.setCode("not-leaf");
-        notLeafCategory.setCatalogVersion(catalogVersionModel);
-        notLeafCategory.setSupercategories(Collections.singletonList(categoryWithAnotherCatalogVersion));
+        thirdCategory = modelService.create(CategoryModel.class);
+        thirdCategory.setCode(THIRD_CODE);
+        thirdCategory.setCatalogVersion(catalogVersionModel);
+        thirdCategory.setSupercategories(Collections.singletonList(secondCategory));
 
-
-        //adding leaf category with right catalog version
-        leafCategory = modelService.create(CategoryModel.class);
-        leafCategory.setCode("leaf");
-        leafCategory.setCatalogVersion(catalogVersionModel);
-        leafCategory.setSupercategories(Collections.singletonList(notLeafCategory));
-
-        modelService.save(categoryWithAnotherCatalogVersion);
-        modelService.save(notLeafCategory);
-        modelService.save(leafCategory);
+        modelService.save(firstCategory);
+        modelService.save(secondCategory);
+        modelService.save(thirdCategory);
 
     }
 
@@ -85,12 +84,12 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
     public void daoShouldReturnOnlyLeafCategories() {
         List<CategoryModel> expected = new ArrayList<>();
 
-        expected.add(leafCategory);
+        expected.add(thirdCategory);
 
         List<CategoryModel> actual = categoryDao.findAllLeafCategoriesByCatalogVersion(catalogVersionModel);
 
         //assertThat(actual.get(0).getCode()).isEqualTo("leaf");
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).containsExactly(thirdCategory);
         //assertThat(actual.get(0).getCode()).isEqualTo("leaf");
  //       assertThat(actual.get(0).getCode()).isEqualTo("another");
     }
