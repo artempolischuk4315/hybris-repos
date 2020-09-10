@@ -4,9 +4,11 @@ $supercategories=supercategories(code, $catalogVersion)
 $prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 $siteResource=jar:de.hybris.platform.personalizationsampledataaddon.constants.PersonalizationsampledataaddonConstants&/impex/images
 
+INSERT_UPDATE Category;code[unique=true];$catalogVersion;name[lang=de];
+                      ;default-category;Default;DEFAULT CATEGORY IMPEX
 
-INSERT Media;mediaFormat(qualifier);code[unique=true];$catalogVersion;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default=images];mime[default='image/jpeg']
-            ;desktop;my-media-3;Default;$siteResource/photo.jpg
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$catalogVersion;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default=images];mime[default='image/jpeg']
+            ;desktop;my-media-4;Default;$siteResource/photo.jpg
 
-INSERT Product;code[unique=true];name[lang=en];description[lang=en];$catalogVersion;$supercategories[mode='append'];picture(code);approvalStatus(code);$prices
-              ;1335;Headphones;Red Headphones ULTRA-MEGA;Default;custom_category;my-media-3;approved;2 pieces = 415 EUR
+INSERT_UPDATE Product;code[unique=true];name[lang=en];description[lang=en];$catalogVersion;$supercategories[mode='append'];picture(code);approvalStatus(code);$prices
+              ;142;Headphones;Red Headphones ULTRA-MEGA;Default;default-category;my-media-4;approved;2 pieces = 415 EUR
