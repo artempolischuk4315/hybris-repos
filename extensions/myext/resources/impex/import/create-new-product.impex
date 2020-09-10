@@ -1,0 +1,7 @@
+$productCatalog=Default
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+INSERT Product;code[unique=true];$catalogVersion;$supercategories[mode='append'];picture(code);approvalStatus(code);$prices
+              ;131;Default;custom_category;test-media;approved;2 pieces = 415 EUR
