@@ -2,6 +2,11 @@ $productCatalog=Default
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $supercategories=supercategories(code, $catalogVersion)
 $prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$siteResource=file:C:\mentoring\extensions\myext\resources\impex\images
 
-INSERT Product;code[unique=true];$catalogVersion;$supercategories[mode='append'];picture(code);approvalStatus(code);$prices
-              ;131;Default;custom_category;test-media;approved;2 pieces = 415 EUR
+
+INSERT Media;mediaFormat(qualifier);code[unique=true];$catalogVersion;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default=images];mime[default='image/jpeg']
+            ;desktop;my-media-2;Default;$siteResource/photo.jpg
+
+INSERT Product;code[unique=true];name[lang=en];description[lang=en];$catalogVersion;$supercategories[mode='append'];picture(code);approvalStatus(code);$prices
+              ;135;Headphones;Red Headphones ULTRA-MEGA;Default;custom_category;my-media-2;approved;2 pieces = 415 EUR
