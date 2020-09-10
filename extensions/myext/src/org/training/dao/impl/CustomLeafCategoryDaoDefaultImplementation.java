@@ -13,21 +13,21 @@ import java.util.List;
 @Component(value = "customLeafCategoryDao")
 public class CustomLeafCategoryDaoDefaultImplementation implements CustomLeafCategoryDao {
 
+    public static final String QUERY_STRING = "SELECT {c:" + CategoryModel.PK + "}" +
+            "FROM {" + CategoryModel._TYPECODE + " AS c " +
+            "LEFT JOIN " + CategoryModel._CATEGORYCATEGORYRELATION + " as rel ON {c:pk} = {rel:source} } " +
+            "WHERE " + "{c:" + CategoryModel.CATALOGVERSION + "}=?catalogVersion AND {rel:target} IS NULL";
+
     @Autowired
     private FlexibleSearchService flexibleSearchService;
 
     @Override
     public List<CategoryModel> findAllLeafCategoriesByCatalogVersion(CatalogVersionModel catalogVersionModel) {
 
-        final String queryString =
-                "SELECT {c:" + CategoryModel.PK + "}" +
-                        "FROM {" + CategoryModel._TYPECODE + " AS c " +
-                        "LEFT JOIN "+ CategoryModel._CATEGORYCATEGORYRELATION +" as rel ON {c:pk} = {rel:source} } " +
-                        "WHERE " + "{c:" + CategoryModel.CATALOGVERSION + "}=?catalogVersion AND {rel:target} IS NULL";
-
-        final FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(queryString);
+        final FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(QUERY_STRING);
         flexibleSearchQuery.addQueryParameter("catalogVersion", catalogVersionModel);
 
         return flexibleSearchService.<CategoryModel> search(flexibleSearchQuery).getResult();
     }
 }
+

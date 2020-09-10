@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends ServicelayerTransactionalTest {
+public class CustomLeafCategoryDaoIntegrationTest extends ServicelayerTransactionalTest {
     private static final String CATALOG_VERSION = "Staged";
     private static final String CATALOG_ID = "100123131";
     private static final String CATALOG_NAME = "test";
@@ -32,8 +32,8 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
     private CategoryModel secondCategory;
     private CategoryModel thirdCategory;
 
-    @Resource(name = "customLeafCategoryDaoGenericSearch")
-    //@Resource(name = "customLeafCategoryDao")
+    //@Resource(name = "customLeafCategoryDaoGenericSearch")
+    @Resource(name = "customLeafCategoryDao")
     private CustomLeafCategoryDao categoryDao;
 
     @Resource
@@ -74,7 +74,6 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
         thirdCategory = modelService.create(CategoryModel.class);
         thirdCategory.setCode(THIRD_CODE);
         thirdCategory.setCatalogVersion(catalogVersionModel);
-        //thirdCategory.setSupercategories(Collections.singletonList(secondCategory));
 
         modelService.save(firstCategory);
         modelService.save(secondCategory);
@@ -86,6 +85,6 @@ public class CustomLeafCategoryDaoDefaultImplementationIntegrationTest extends S
     public void daoShouldReturnOnlyLeafCategories() {
         List<CategoryModel> actual = categoryDao.findAllLeafCategoriesByCatalogVersion(catalogVersionModel);
 
-        assertThat(actual).containsExactly(thirdCategory);
+        assertThat(actual).contains(thirdCategory);
     }
 }
