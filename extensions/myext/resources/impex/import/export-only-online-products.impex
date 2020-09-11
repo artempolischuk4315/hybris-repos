@@ -1,0 +1,8 @@
+"#% impex.setTargetFile( ""Product.csv"" , true );"
+
+insert_update Product; pk[unique=true]; code; name[lang=en];catalog;catalogVersion
+
+"#% impex.exportItems(""SELECT {P:pk}, {P:code}, {CV:version} FROM {Product as P}, {Catalog as C}, {CatalogVersion as CV} WHERE {P:catalogversion}={CV:PK} AND {CV:catalog}={C:PK} AND {C:id}='Default' GROUP BY {P:code} HAVING COUNT({P:code})=1 AND {CV:version} ='Online' "",
+
+
+Collections.EMPTY_MAP, Collections.singletonList( Item.class ), true, true, -1, -1  );"
