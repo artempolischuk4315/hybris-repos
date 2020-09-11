@@ -32,6 +32,17 @@
             </attributes>
         </itemtype>
 
+        <itemtype code="User"
+                  autocreate="false"
+                  generate="false">
+            <attributes>
+                <attribute type="java.util.Date" qualifier="dateOfBirth">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
         <itemtype code="Customer"
                   autocreate="false"
                   generate="false">

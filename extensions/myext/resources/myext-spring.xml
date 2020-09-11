@@ -33,5 +33,14 @@
     </bean>
     <bean id = "customerDescriptionHandler" class = "org.training.handler.CustomerDescriptionHandler" />
 
+    <bean id="userAgeValidationInterceptor" class="org.training.interceptor.UserAgeValidationInterceptor"
+          autowire="byName"/>
+
+    <bean id="UserAgeValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="userAgeValidationInterceptor"/>
+        <property name="typeCode" value="User"/>
+    </bean>
+
     <context:component-scan base-package="org.training"/>
 </beans>
