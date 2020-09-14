@@ -41,6 +41,18 @@
 
         <!-- TypeGroups are for structure of this file only -->
 
+        <typegroup name="Custom">
+            <itemtype code="Product"
+                      autocreate="false" generate="false">
+                <attributes>
+                    <attribute qualifier="additionalInformation" type="java.lang.String" generate="true">
+                        <persistence type="property"/>
+                        <modifiers read="true" write="true" optional="true"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
         <typegroup name="Apparel">
             <itemtype code="ApparelProduct" extends="Product"
                       autocreate="true" generate="true"
@@ -109,18 +121,6 @@
                     </attribute>
                 </attributes>
             </itemtype>
-        </typegroup>
-
-        <typegroup name="Custom">
-        <itemtype code="Product"
-                  autocreate="false" generate="false">
-            <attributes>
-                <attribute qualifier="additionalInformation" type="java.lang.String" generate="true">
-                    <persistence type="property"/>
-                    <modifiers read="true" write="true" optional="true"/>
-                </attribute>
-            </attributes>
-        </itemtype>
         </typegroup>
 
     </itemtypes>
