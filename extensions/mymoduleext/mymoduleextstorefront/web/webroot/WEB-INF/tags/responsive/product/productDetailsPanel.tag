@@ -25,14 +25,6 @@
 							<product:productPricePanel product="${product}" />
 						</ycommerce:testId>
 						<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>
-						<c:if test="${not empty product.additionalInformation}">
-                           <div>
-                                <p>
-                                  <span style = "font-weight: bold"><spring:theme code = "product.details.additional-info-title"/>: </span>
-                                  ${product.additionalInformation}
-                              </p>
-                            </div>
-                         </c:if>
 					</div>
 				</div>
 
