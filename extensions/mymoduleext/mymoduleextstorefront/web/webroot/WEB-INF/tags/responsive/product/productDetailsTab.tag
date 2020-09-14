@@ -8,4 +8,12 @@
 			${ycommerce:sanitizeHTML(product.description)}
 		<p>
 	</ycommerce:testId>
+	<c:if test="${not empty product.additionalInformation}">
+                               <div>
+                                    <p>
+                                      <span style = "font-weight: bold">Additional info: </span>
+                                      ${product.additionalInformation}
+                                  </p>
+                                </div>
+      </c:if>
 </div>

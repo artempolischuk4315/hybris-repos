@@ -189,4 +189,14 @@
 	</bean>
 
 	<bean id="genderData" class="org.training.facades.product.data.GenderData" scope="prototype"/>
+
+	<bean id = "additionalInformationPopulator"
+		  class="org.training.facades.populators.AdditionalInformationPopulator"/>
+
+	<bean parent="configurablePopulatorModification">
+		<property name="target" ref="defaultProductConfiguredPopulator"/>
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption"/>
+		<property name="key" value="ADDITIONAL_INFORMATION"/>
+		<property name="add" ref="additionalInformationPopulator"/>
+	</bean>
 </beans>
