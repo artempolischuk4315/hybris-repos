@@ -199,4 +199,11 @@
 		<property name="key" value="ADDITIONAL_INFORMATION"/>
 		<property name="add" ref="additionalInformationPopulator"/>
 	</bean>
+
+	<alias name="extendedProductFacade" alias="productVariantFacade"/>
+	<bean id="extendedProductFacade"
+		  class="org.training.facades.facade.ExtendedProductFacade"
+		  parent="defaultProductVariantFacade">
+		<constructor-arg ref="configurationService"/>
+	</bean>
 </beans>
