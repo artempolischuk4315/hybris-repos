@@ -42,12 +42,6 @@
         <property name="typeCode" value="User"/>
     </bean>
 
-    <bean id="productRemoveVoidInterceptorMapping"
-          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
-        <property name="interceptor" ref="VoidInterceptor"/>
-        <property name="typeCode" value="Product"/>
-        <property name="replacedInterceptors" ref="productRemoveInterceptor"/>
-    </bean>
 
     <context:component-scan base-package="org.training"/>
 </beans>
