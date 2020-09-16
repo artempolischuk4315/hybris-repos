@@ -9,7 +9,7 @@
  Information and shall use it only in accordance with the terms of the
  license agreement you entered into with SAP.
 -->
-<config xmlns="http://www.hybris.com/cockpit/config">
+<config xmlns="http://www.hybris.com/cockpit/config" xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config">
     <context component="explorer-tree" merge-by="module">
         <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
             <n:navigation-node id="hmc_treenode_medias" merge-mode="append">
@@ -57,28 +57,27 @@
     </context>
 
 
-
-  <context merge-by="principal" component="explorer-tree"
-                 principal="custommarketingmanagerrole">
-            <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
-                <n:navigation-node id="hmc_treenode_system" merge-mode="remove"/>
-                <n:navigation-node id="hmc_treenode_medias" merge-mode="remove"/>
-                <n:navigation-node id="hmc_treenode_catalog" merge-mode="remove"/>
-                <n:navigation-node id="hmc_treenode_user" merge-mode="remove"/>
-                <n:navigation-node id="hmc_treenode_order" merge-mode="remove"/>
-                <n:navigation-node id="hmc_treenode_pricesettings" merge-mode="remove"/>
-                <n:navigation-node id="hmc_treenode_c2l" merge-mode="remove"/>
-                <n:navigation-node id="hmc_treenode_solr_backoffice" merge-mode="remove"/>
-                <n:navigation-node id="hmc.cms2" merge-mode="remove"/>
-                <n:navigation-node id="hmc.cockpit" merge-mode="remove"/>
-                <n:navigation-node id="ruleengine" merge-mode="remove"/>
-                <n:navigation-node id="hmc_ticketsystemgroup" merge-mode="remove"/>
-                <n:navigation-node id="hmc.group.basecommerce" merge-mode="remove"/>
-                <n:navigation-node id="hmc.group.basecommerce.deeplink" merge-mode="remove"/>
-                <n:navigation-node id="cxnode" merge-mode="remove"/>
-                <n:navigation-node id="Supplier" merge-mode="remove"/>
-            </n:explorer-tree>
-        </context>
+    <context merge-by="principal" component="explorer-tree"
+             principal="custommarketingmanagerrole">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="hmc_treenode_system" merge-mode="remove"/>
+            <n:navigation-node id="hmc_treenode_medias" merge-mode="remove"/>
+            <n:navigation-node id="hmc_treenode_catalog" merge-mode="remove"/>
+            <n:navigation-node id="hmc_treenode_user" merge-mode="remove"/>
+            <n:navigation-node id="hmc_treenode_order" merge-mode="remove"/>
+            <n:navigation-node id="hmc_treenode_pricesettings" merge-mode="remove"/>
+            <n:navigation-node id="hmc_treenode_c2l" merge-mode="remove"/>
+            <n:navigation-node id="hmc_treenode_solr_backoffice" merge-mode="remove"/>
+            <n:navigation-node id="hmc.cms2" merge-mode="remove"/>
+            <n:navigation-node id="hmc.cockpit" merge-mode="remove"/>
+            <n:navigation-node id="ruleengine" merge-mode="remove"/>
+            <n:navigation-node id="hmc_ticketsystemgroup" merge-mode="remove"/>
+            <n:navigation-node id="hmc.group.basecommerce" merge-mode="remove"/>
+            <n:navigation-node id="hmc.group.basecommerce.deeplink" merge-mode="remove"/>
+            <n:navigation-node id="cxnode" merge-mode="remove"/>
+            <n:navigation-node id="Supplier" merge-mode="remove"/>
+        </n:explorer-tree>
+    </context>
 
     <context type="Customer" component="simple-search">
         <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
@@ -92,6 +91,17 @@
                 <as:field name="customerId" operator="contains" selected="true"/>
             </as:field-list>
         </as:advanced-search>
+    </context>
+
+
+    <context merge-by="type" type="Customer" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials xmlns="http://www.hybris.com/cockpitng/component/editorArea">
+                <essentialSection name="hmc.essential">
+                    <attribute qualifier="referedBy" merge-mode="add"/>
+                </essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
     </context>
 </config>
 
