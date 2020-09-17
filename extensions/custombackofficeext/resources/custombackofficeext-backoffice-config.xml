@@ -103,5 +103,22 @@
             </editorArea:essentials>
         </editorArea:editorArea>
     </context>
+
+
+    <context type="Customer" parent="User" component="create-wizard">
+        <wz:flow id="CustomCustomerWizard" title="create.title(ctx.TYPE_CODE)" >
+            <wz:prepare id="custPrepare">
+                <wz:initialize property="newCust" type="ctx.TYPE_CODE"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newCust">
+                        <wz:property qualifier="referedBy" type="java.lang.String"/>
+                    </wz:property-list>
+                </wz:content>
+            </wz:step>
+        </wz:flow>
+    </context>
+
 </config>
 
