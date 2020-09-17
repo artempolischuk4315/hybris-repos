@@ -12,10 +12,6 @@
     <extension name='commerceservicesbackoffice' />
     <extension name='solrfacetsearchbackoffice' />
     <extension name='solrserver' />
-    <extension name='yacceleratorcockpits' />
-    <extension name='yacceleratorinitialdata' />
-    <extension name='yacceleratorfulfilmentprocess' />
-    <extension name='yacceleratorstorefront' />
     <extension name='ycommercewebservices' />
     <extension name='ycommercewebservicestest' />
     <extension name='electronicsstore' />
@@ -64,5 +60,12 @@
     <extension name='pcmbackofficesamplesaddon' />
     <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/myext' />
     <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/custombackofficeext'/>
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/mymoduleext/mymoduleextfulfilmentprocess'/>
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/mymoduleext/mymoduleextcockpits'/>
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/mymoduleext/mymoduleextcore'/>
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/mymoduleext/mymoduleextfacades'/>
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/mymoduleext/mymoduleexttest'/>
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/mymoduleext/mymoduleextinitialdata'/>
+    <extension dir= '${HYBRIS_BIN_DIR}/../../extensions/mymoduleext/mymoduleextstorefront'/>
   </extensions>
 </hybrisconfig>
