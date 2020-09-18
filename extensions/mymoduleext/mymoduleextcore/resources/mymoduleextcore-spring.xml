@@ -556,11 +556,10 @@
 		<property name="modelService" ref="modelService" />
 	</bean>
 
-	<bean id="userManagerRegistrationConfirmationActionJob" class="org.training.core.workflow.UserManagerRegistrationConfirmationActionJob" >
-		<property name="modelService" ref="modelService" />
-	</bean>
-
-	<bean id="registrationDeclineActionJob" class="org.training.core.workflow.RegistrationDeclineActionJob" >
-		<property name="modelService" ref="modelService" />
+	<alias alias="customerAccountService" name="customCustomerService"/>
+	<bean id="customCustomerService" class="org.training.core.service.MyCustomerService" parent="defaultCustomerAccountService">
+		<property name="workflowService" ref="newestWorkflowService"/>
+		<property name="workflowTemplateService" ref="workflowTemplateService"/>
+		<property name="workflowProcessingService" ref="workflowProcessingService"/>
 	</bean>
 </beans>

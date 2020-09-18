@@ -1,4 +1,4 @@
-package org.training.workflow;
+package org.training.core.workflow;
 
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.model.ModelService;

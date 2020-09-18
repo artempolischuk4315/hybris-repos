@@ -1,4 +1,4 @@
-package org.training.workflow;
+package org.training.core.workflow;
 
 import de.hybris.platform.core.model.ItemModel;
 import de.hybris.platform.core.model.user.CustomerModel;
