@@ -83,6 +83,18 @@
             </n:explorer-tree>
         </context>
 
+    <context type="Customer" component="simple-search">
+        <yss:simple-search xmlns:yss="http://www.hybris.com/cockpitng/config/simplesearch">
+            <yss:field name="customerId"/>
+        </yss:simple-search>
+    </context>
 
+    <context type="Customer" component="advanced-search">
+        <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+            <as:field-list>
+                <as:field name="customerId" operator="contains" selected="true"/>
+            </as:field-list>
+        </as:advanced-search>
+    </context>
 </config>
 
