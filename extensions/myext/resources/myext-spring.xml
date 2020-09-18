@@ -42,5 +42,10 @@
         <property name="typeCode" value="User"/>
     </bean>
 
+    <bean id="myExportCronJob" class="org.training.cronJob.CustomExportCronJob"
+          parent="abstractJobPerformable">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
     <context:component-scan base-package="org.training"/>
 </beans>
