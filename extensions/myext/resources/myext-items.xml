@@ -55,6 +55,10 @@
                     <persistence type="dynamic" attributeHandler="customerDescriptionHandler"/>
                     <modifiers read="true" write="false"/>
                 </attribute>
+                <attribute qualifier="referedBy" type="java.lang.String" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="true"/>
+                </attribute>
             </attributes>
         </itemtype>
 
