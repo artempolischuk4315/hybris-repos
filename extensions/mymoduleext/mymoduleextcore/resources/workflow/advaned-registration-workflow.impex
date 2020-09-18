@@ -1,0 +1,31 @@
+INSERT_UPDATE WorkflowTemplate;code[unique=true];name[lang=en];owner(uid);activationscript;visibleForPrincipals(uid);;;
+                              ;AdvancedUserRegistration;Advanced User Registration;admin;;userManagerGroup, supervisorManagerGroup;;;
+
+
+INSERT_UPDATE WorkflowActionTemplate;code[unique=true];name[lang=en];description[lang=en];principalAssigned(uid);workflow(code)[unique=true];sendEmail;emailAddress;rendererTemplate(code);actionType(code)
+                                    ;AUR_Confirm_User_Manager;Confirmation by an user manager;;userManagerGroup;AdvancedUserRegistration;false;;;start
+                                    ;AUR_Confirm_Supervisor_Manager;Confirmation by a supervisor manager;;supervisorManagerGroup;AdvancedUserRegistration;false;;;normal
+                                    ;AUR_End;End;;userManagerGroup, supervisorManagerGroup;AdvancedUserRegistration;false;;;end
+
+
+INSERT_UPDATE AutomatedWorkflowActionTemplate;code[unique=true];name[lang=en];description[lang=en];principalAssigned(uid);workflow(code)[unique=true];sendEmail;emailAddress;rendererTemplate(code);actionType(code);jobHandler
+                                             ;AUR_Confirm_Positive_By_User_Manager;User confirmed by user manager;;userManagerGroup;AdvancedUserRegistration;false;;;normal;userManagerRegistrationConfirmationActionJob
+                                             ;AUR_Confirm_Positive_By_Supervisor;User confirmed by supervisor;;supervisorManagerGroup;AdvancedUserRegistration;false;;;normal;supervisorRegistrationConfirmationActionJob
+                                             ;AUR_Confirm_Negative;User declined;;userManagerGroup, supervisorManagerGroup;AdvancedUserRegistration;false;;;normal;registrationDeclineActionJob
+
+
+INSERT_UPDATE WorkflowDecisionTemplate;code[unique=true];name[lang=en];actionTemplate(code);description[allownull=true];;;;;;
+                                      ;AUR001;Confirm user by userManager;AUR_Confirm_User_Manager;;;;;;;
+                                      ;AUR002;Decline user by userManager;AUR_Confirm_User_Manager;;;;;;;
+                                      ;AUR003;Confirm user by supervisorManager;AUR_Confirm_Supervisor_Manager;;;;;;;
+                                      ;AUR004;Decline user by supervisorManager;AUR_Confirm_Supervisor_Manager;;;;;;;
+                                      ;AUR005;End;AUR_Confirm_Positive;;;;;;;
+                                      ;AUR006;End;AUR_Confirm_Negative;;;;;;;
+
+INSERT_UPDATE WorkflowActionTemplateLinkTemplateRelation;source(code)[unique=true];target(code)[unique=true];andConnectionTemplate;qualifier;;;;;;;
+                                                        ;AUR001;AUR_Confirm_Positive_By_User_Manage;false;WorkflowActionTemplateLinkTemplateRelation;;;;;;;
+                                                        ;AUR002;AUR_Confirm_Negative;false;WorkflowActionTemplateLinkTemplateRelation;;;;;;;
+                                                        ;AUR003;AUR_Confirm_Positive_By_Supervisor;false;WorkflowActionTemplateLinkTemplateRelation;;;;;;;
+                                                        ;AUR004;AUR_Confirm_Negative;false;WorkflowActionTemplateLinkTemplateRelation;;;;;;;
+                                                        ;AUR005;AUR_End;false;WorkflowActionTemplateLinkTemplateRelation;;;;;;;
+                                                        ;AUR006;AUR_End;false;WorkflowActionTemplateLinkTemplateRelation;;;;;;;
