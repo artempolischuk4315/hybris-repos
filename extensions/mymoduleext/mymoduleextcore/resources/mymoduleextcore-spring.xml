@@ -552,6 +552,7 @@
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
 
+
 	<bean id="supervisorRegistrationConfirmationActionJob" class="org.training.core.workflow.SupervisorRegistrationConfirmationActionJob" >
 		<property name="modelService" ref="modelService" />
 	</bean>
@@ -562,4 +563,6 @@
 		<property name="workflowTemplateService" ref="workflowTemplateService"/>
 		<property name="workflowProcessingService" ref="workflowProcessingService"/>
 	</bean>
+
+
 </beans>

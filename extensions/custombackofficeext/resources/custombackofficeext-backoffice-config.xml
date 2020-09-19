@@ -43,7 +43,10 @@
 
     <context component="explorer-tree" merge-by="module">
         <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+
             <n:navigation-node id="Supplier" merge-mode="append">
+            <n:navigation-node id="sup" merge-mode="append">
+
                 <n:type-node id="hmc_typenode_supplier" code="Supplier"/>
             </n:navigation-node>
         </n:explorer-tree>

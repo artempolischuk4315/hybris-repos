@@ -130,5 +130,42 @@
                 </index>
             </indexes>
         </itemtype>
+
+
+        <itemtype code="Supplier" autocreate="true" generate="true">
+            <deployment table=" Supplier " typecode="12011"/>
+            <custom-properties>
+                <property name="catalogItemType">
+                    <value>java.lang.Boolean.TRUE</value>
+                </property>
+
+                <property name="catalogVersionAttributeQualifier">
+                    <value>"catalogVersion"</value>
+                </property>
+
+                <property name="uniqueKeyAttributeQualifier">
+                    <value>"supplierName"</value>
+                </property>
+            </custom-properties>
+
+            <attributes>
+                <attribute qualifier="supplierName" type="java.lang.String">
+                    <modifiers read="true" write="true" search="true" unique="true" optional="false" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+
+                <attribute qualifier="description" type="java.lang.String">
+                    <modifiers read="true" write="true"/>
+                    <persistence type="property"/>
+                </attribute>
+
+                <attribute qualifier="catalogVersion" type="CatalogVersion">
+                    <modifiers read="true" write="true" search="true" optional="false" unique="true" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+
     </itemtypes>
 </items>
