@@ -45,7 +45,8 @@
     <bean id="customInvalidateCertainItemCronJob" class="org.training.cronJob.CustomInvalidateCertainItemCronJob"
           parent="abstractJobPerformable">
         <property name="configurationService" ref="configurationService"/>
-        <property name="modelService" ref="modelService"/>
+        <property name="productService" ref="productService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 
     <bean id="customClearParticularRegionCronJob" class="org.training.cronJob.CustomClearParticularRegionCronJob" parent="abstractJobPerformable">
@@ -54,6 +55,12 @@
 
     <bean id="customClearAllRegionsCronJob" class="org.training.cronJob.CustomClearAllRegionsCronJob" parent="abstractJobPerformable">
         <property name="cacheController" ref="cacheController"/>
+    </bean>
+
+    <alias alias="productService" name="myProductService"/>
+    <bean id="myProductService" class="org.training.service.impl.MyProductService"
+          parent="defaultProductService">
+        <property name="modelService" ref="modelService"/>
     </bean>
 
     <context:component-scan base-package="org.training"/>
