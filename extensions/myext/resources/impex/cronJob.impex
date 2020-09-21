@@ -1,0 +1,8 @@
+
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId;
+                             ;customClearParticularRegionCronJob;customClearParticularRegionCronJob
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
+                     ;cronJobClearParticularRegion;customClearParticularRegionCronJob;false;de
+                     ;cronJobClearAllRegions;customClearAllRegionsCronJob;false;de
+                     ;cronJobClearOneItem;
