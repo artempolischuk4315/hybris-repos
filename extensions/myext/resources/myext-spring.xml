@@ -62,5 +62,11 @@
         <property name="cacheController" ref="cacheController"/>
     </bean>
 
+    <alias alias="productService" name="myProductService"/>
+    <bean id="myProductService" class="org.training.service.impl.MyProductService"
+          parent="defaultProductService">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
     <context:component-scan base-package="org.training"/>
 </beans>
