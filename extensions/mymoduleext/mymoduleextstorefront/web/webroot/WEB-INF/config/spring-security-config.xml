@@ -93,6 +93,8 @@
 		<security:intercept-url pattern="/my-account/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
 		<security:intercept-url pattern="/quote/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
 
+		<security:intercept-url pattern="/Open-Catalogue/Cameras/Digital-Cameras/Digital-Compacts/Photosmart-E317-Digital-Camera/p/300938" access="HYBRIS_NOT_ANONYMOUS" requires-channel="https"/>
+
 		<security:intercept-url pattern="/**" requires-channel="https" /> <!-- Everything should be secure -->
 
 		<security:form-login
