@@ -564,5 +564,4 @@
 		<property name="workflowProcessingService" ref="workflowProcessingService"/>
 	</bean>
 
-
 </beans>
