@@ -1,46 +1,59 @@
-package org.training.core.cronJob;
+package org.training.cronJob;
 
-import de.hybris.platform.core.PK;
+import de.hybris.platform.catalog.CatalogVersionService;
+import de.hybris.platform.catalog.model.CatalogVersionModel;
+import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.cronjob.enums.CronJobResult;
 import de.hybris.platform.cronjob.enums.CronJobStatus;
 import de.hybris.platform.cronjob.model.CronJobModel;
+import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.cronjob.AbstractJobPerformable;
 import de.hybris.platform.servicelayer.cronjob.PerformResult;
-import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.util.Utilities;
 import org.springframework.beans.factory.annotation.Required;
 
-import java.util.Optional;
-
 public class CustomInvalidateCertainItemCronJob extends AbstractJobPerformable<CronJobModel> {
+    private static final String CODE_KEY = "cronjob.code";
+    private static final String CATALOG_ID_KEY = "cronjob.catalog-id";
+    private static final String CATALOG_VERSION_KEY = "cronjob.catalog-version";
 
-    private static final String PK_STRING = "cronjob.pk";
-
-    private ModelService modelService;
+    private ProductService productService;
+    private CatalogVersionService catalogVersionService;
     private ConfigurationService configurationService;
+
+    public CustomInvalidateCertainItemCronJob() {
+    }
 
     @Override
     public PerformResult perform(CronJobModel cronJobModel) {
+        String code = configurationService.getConfiguration().getString(CODE_KEY);
+        String id = configurationService.getConfiguration().getString(CATALOG_ID_KEY);
+        String version = configurationService.getConfiguration().getString(CATALOG_VERSION_KEY);
 
-        String pkFromProperties = configurationService.getConfiguration().getString(PK_STRING);
+        CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(id, version);
+        ProductModel productModel = productService.getProductForCode(catalogVersion, code);
 
-        Optional<PK> pk = Optional.ofNullable(modelService.get(pkFromProperties));
-
-        if (pk.isPresent()) {
-            Utilities.invalidateCache(pk.get());
+        if (productModel != null) {
+            Utilities.invalidateCache(productModel.getPk());
             return new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
         }
         return new PerformResult(CronJobResult.FAILURE, CronJobStatus.ABORTED);
     }
 
-    @Required
-    public void setModelService(ModelService modelService) {
-        this.modelService = modelService;
-    }
 
     @Required
     public void setConfigurationService(ConfigurationService configurationService) {
         this.configurationService = configurationService;
+    }
+
+    @Required
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @Required
+    public void setCatalogVersionService(CatalogVersionService catalogVersionService) {
+        this.catalogVersionService = catalogVersionService;
     }
 }

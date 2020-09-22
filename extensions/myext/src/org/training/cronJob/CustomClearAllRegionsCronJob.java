@@ -1,4 +1,4 @@
-package org.training.core.cronJob;
+package org.training.cronJob;
 
 import de.hybris.platform.cronjob.enums.CronJobResult;
 import de.hybris.platform.cronjob.enums.CronJobStatus;

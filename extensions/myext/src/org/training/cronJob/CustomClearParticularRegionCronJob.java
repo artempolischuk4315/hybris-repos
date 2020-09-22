@@ -1,4 +1,4 @@
-package org.training.core.cronJob;
+package org.training.cronJob;
 
 import de.hybris.platform.cronjob.enums.CronJobResult;
 import de.hybris.platform.cronjob.enums.CronJobStatus;
@@ -17,7 +17,7 @@ public class CustomClearParticularRegionCronJob extends AbstractJobPerformable<C
     public PerformResult perform(CronJobModel cronJobModel) {
 
         CacheRegion cacheRegion = cacheController.getRegions().stream().
-                filter(cacheRegion1 -> cacheRegion1.getName().equals("EntityRegion"))
+                filter(cacheRegion1 -> cacheRegion1.getName().equals("entityCacheRegion"))
                 .findFirst().get();
 
         cacheRegion.clearCache();
