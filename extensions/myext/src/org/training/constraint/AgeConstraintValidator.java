@@ -13,7 +13,7 @@ public class AgeConstraintValidator implements ConstraintValidator<AgeCheck, Int
 
     @Override
     public boolean isValid(Integer age, ConstraintValidatorContext constraintValidatorContext) {
-        return age > minimalAge;
+        return age > (minimalAge-1);
     }
 
     private void validateParameters()
@@ -29,3 +29,4 @@ public class AgeConstraintValidator implements ConstraintValidator<AgeCheck, Int
     }
 
 }
+
