@@ -21,6 +21,25 @@
 
     <itemtypes>
 
+        <itemtype code="AgeCheckConstraint" autocreate="true" generate="true" extends="AttributeConstraint"
+                  jaloclass="org.training.constraint.AgeCheckConstraint">
+            <description>Custom constraint which checks for age.</description>
+            <attributes>
+                <attribute type="java.lang.Integer" qualifier="minimalAge">
+                    <description>Minimal age</description>
+                    <modifiers read="true" write="true" search="true" optional="false"
+                               initial="true" />
+                    <persistence type="property" />
+                </attribute>
+                <attribute qualifier="annotation" type="java.lang.Class" redeclare="true">
+                    <modifiers write="false" initial="true" optional="false"/>
+                    <defaultvalue>
+                        org.training.constraint.AgeCheck.class
+                    </defaultvalue>
+                </attribute>
+            </attributes>
+        </itemtype>
+
         <itemtype code="Product"
                   autocreate="false"
                   generate="false">
@@ -58,6 +77,10 @@
                 <attribute qualifier="referedBy" type="java.lang.String" generate="true">
                     <persistence type="property"/>
                     <modifiers read="true" write="true" optional="true"/>
+                </attribute>
+                <attribute qualifier="age" type="java.lang.Integer" generate="true">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true"/>
                 </attribute>
             </attributes>
         </itemtype>
