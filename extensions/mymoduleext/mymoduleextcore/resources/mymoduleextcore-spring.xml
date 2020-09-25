@@ -301,6 +301,11 @@
 		<property name="resource" value="classpath:/mymoduleextcore/processes/sendNotPickedUpConsignmentCanceledEmailProcess.xml"/>
 	</bean>
 
+	<bean id="customerUpdateProfileEmailProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/mymoduleextcore/processes/customerUpdateProfileEmailProcess.xml"/>
+	</bean>
+
 	<!-- Actions -->
 	<bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"
 	      abstract="true">
@@ -319,6 +324,10 @@
 		<property name="cmsEmailPageService" ref="cmsEmailPageService"/>
 		<property name="contextResolutionStrategy" ref="processContextResolutionStrategy"/>
 		<property name="emailGenerationService" ref="emailGenerationService"/>
+	</bean>
+
+	<bean id="generateCustomerUpdateProfileEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CustomerUpdateProfileEmailTemplate"/>
 	</bean>
 
 	<bean id="generateCustomerRegistrationEmail" parent="abstractGenerateEmailAction">
@@ -545,6 +554,13 @@
 		<property name="itemCleanupHooks" ref="csTicketCleanupHooks"/>
 	</bean>
 
+	<bean depends-on="processContextResolutionStrategyMap" parent="mapMergeDirective">
+		<property name="key">
+			<value type="java.lang.Class">de.hybris.platform.processengine.model.BusinessProcessModel</value>
+		</property>
+		<property name="value" ref="storeFrontProcessContextStrategy"/>
+	</bean>
+
 	<!-- CsTicket Stagnation action -->
 	<alias name="defaultCSTicketStagnationAction" alias="csTicketStagnationAction"/>
 	<bean id="defaultCSTicketStagnationAction" class="org.training.core.retention.impl.DefaultCSTicketStagnationAction" parent="abstractExtensibleRemoveCleanupAction">
@@ -552,16 +568,16 @@
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
 
-
-	<bean id="supervisorRegistrationConfirmationActionJob" class="org.training.core.workflow.SupervisorRegistrationConfirmationActionJob" >
-		<property name="modelService" ref="modelService" />
+	<alias name="extendedCustomerService" alias="customerAccountService"/>
+	<bean id="extendedCustomerService" class="org.training.core.service.ExtendedCustomerService"
+		  parent="defaultCustomerAccountService">
+		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<alias alias="customerAccountService" name="customCustomerService"/>
-	<bean id="customCustomerService" class="org.training.core.service.MyCustomerService" parent="defaultCustomerAccountService">
-		<property name="workflowService" ref="newestWorkflowService"/>
-		<property name="workflowTemplateService" ref="workflowTemplateService"/>
-		<property name="workflowProcessingService" ref="workflowProcessingService"/>
+	<bean id="customerProfileUpdatedEventListener" class="org.training.core.event.CustomerProfileUpdatedEventListener" parent="abstractSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+		<property name="processCodeGenerator" ref="processCodeGenerator"/>
 	</bean>
 
 </beans>

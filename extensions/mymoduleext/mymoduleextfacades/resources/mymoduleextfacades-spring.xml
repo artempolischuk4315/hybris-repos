@@ -188,22 +188,11 @@
 		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
 	</bean>
 
+	<bean id="customerUpdateProfileEmailContext"
+		  class="org.training.facades.process.email.context.CustomerUpdateProfileEmailContext"
+		  parent="customerEmailContext"
+		  scope="prototype" >
+	</bean>
+
 	<bean id="genderData" class="org.training.facades.product.data.GenderData" scope="prototype"/>
-
-	<bean id = "additionalInformationPopulator"
-		  class="org.training.facades.populators.AdditionalInformationPopulator"/>
-
-	<bean parent="configurablePopulatorModification">
-		<property name="target" ref="defaultProductConfiguredPopulator"/>
-		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption"/>
-		<property name="key" value="ADDITIONAL_INFORMATION"/>
-		<property name="add" ref="additionalInformationPopulator"/>
-	</bean>
-
-	<alias name="extendedProductFacade" alias="productVariantFacade"/>
-	<bean id="extendedProductFacade"
-		  class="org.training.facades.facade.ExtendedProductFacade"
-		  parent="defaultProductVariantFacade">
-		<constructor-arg ref="configurationService"/>
-	</bean>
 </beans>

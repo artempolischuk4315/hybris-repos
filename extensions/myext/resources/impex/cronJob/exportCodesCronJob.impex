@@ -1,6 +1,0 @@
-INSERT_UPDATE CronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
-                     ;myCronJob;myExportCronJob;false;de
-
-INSERT_UPDATE Trigger; cronJob(code)[unique=true];cronExpression[unique=true]
-                     ;myCronJob;0 0 0 * * ?
-                     ;myCronJob; 0 0 3 ? * MON

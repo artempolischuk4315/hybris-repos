@@ -41,17 +41,6 @@
 
         <!-- TypeGroups are for structure of this file only -->
 
-        <typegroup name="Custom">
-            <itemtype code="Product"
-                      autocreate="false" generate="false">
-                <attributes>
-                    <attribute qualifier="additionalInformation" type="java.lang.String">
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
-
         <typegroup name="Apparel">
             <itemtype code="ApparelProduct" extends="Product"
                       autocreate="true" generate="true"
@@ -117,6 +106,17 @@
                         <description>Color of the product.</description>
                         <modifiers/>
                         <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+        <typegroup name="Processes">
+            <itemtype code="CustomerUpdateProfileEmailProcess" extends="StoreFrontCustomerProcess"
+                      jaloclass="org.training.jalo.process.CustomerUpdateProfileEmailProcess">
+                <attributes>
+                    <attribute qualifier="firstName" type="java.lang.String">
+                        <persistence type="property" />
                     </attribute>
                 </attributes>
             </itemtype>
