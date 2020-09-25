@@ -47,6 +47,7 @@
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
 
+
     <bean id="customInvalidateCertainItemCronJob" class="org.training.cronJob.CustomInvalidateCertainItemCronJob"
           parent="abstractJobPerformable">
         <property name="configurationService" ref="configurationService"/>
@@ -60,6 +61,10 @@
 
     <bean id="customClearAllRegionsCronJob" class="org.training.cronJob.CustomClearAllRegionsCronJob" parent="abstractJobPerformable">
         <property name="cacheController" ref="cacheController"/>
+
+    <bean id="myExportCronJob" class="org.training.cronJob.CustomExportCronJob"
+          parent="abstractJobPerformable">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
 
     <alias alias="productService" name="myProductService"/>
