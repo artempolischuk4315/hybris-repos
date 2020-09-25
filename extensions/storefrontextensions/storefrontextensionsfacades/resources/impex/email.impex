@@ -3,7 +3,7 @@ $contentCatalog=electronicsContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
 
 # Path to the Velocity Templates
-$emailResource=jar:org.training.core.setup.CoreSystemSetup&/mymoduleextcore/import/emails
+$emailResource=jar:org.training.core.setup.CoreSystemSetup&/storefrontextensionscore/import/emails
 
 # Package of the Context class
 $emailPackageName=org.training.facades.process.email.context

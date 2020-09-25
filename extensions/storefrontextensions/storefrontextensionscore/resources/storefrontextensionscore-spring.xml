@@ -561,7 +561,7 @@
 
 	<bean id="customerUpdateProfileEmailProcessDefinitionResource"
 		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
-		<property name="resource" value="classpath:/mymoduleextcore/processes/customerUpdateProfileEmailProcess.xml"/>
+		<property name="resource" value="classpath:/storefrontextensionscore/processes/customerUpdateProfileEmailProcess.xml"/>
 	</bean>
 
 	<bean id="generateCustomerUpdateProfileEmail" parent="abstractGenerateEmailAction">
