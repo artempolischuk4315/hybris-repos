@@ -1,0 +1,5 @@
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId;
+                             ;invalidateCertainItemCronJob;invalidateCertainItemCronJob
+
+INSERT_UPDATE CertainItemCacheInvalidationCronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode);itemToInvalidate
+                            ;customClearCacheOfCertainItem;invalidateCertainItemCronJob;false;en;8796093054977
