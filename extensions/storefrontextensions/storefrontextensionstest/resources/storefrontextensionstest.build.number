@@ -1,0 +1,9 @@
+#Ant properties
+#Thu May 09 14:51:22 CEST 2019
+builddate=20190509 1449
+description=storefrontextensionstest
+name=storefrontextensionstest
+releasedate=20180313 1012
+vendor=hybris
+version=6.7.0.15
+version.api=6.7.0
