@@ -1,0 +1,20 @@
+# Content Catalog Version
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+# Path to the Velocity Templates
+$emailResource=jar:org.training.core.setup.CoreSystemSetup&/mymoduleextcore/import/emails
+$emailPackageName=org.training.facades.process.email.context
+
+# Create Template Renderers
+INSERT_UPDATE RendererTemplate	;code[unique=true]			;contextClass								;templateScript[lang=en,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator];rendererType(code)[default='velocity']
+                                  ;email-customerUpdateProfileBody	;$emailPackageName.CustomerUpdateProfileEmailContext	;$emailResource/email-customerUpdateProfileBody.vm
+                                  ;email-customerUpdateProfileSubject	;$emailPackageName.CustomerUpdateProfileEmailContext	;$emailResource/email-customerUpdateProfileSubject.vm
+
+# Create Email page Template
+INSERT_UPDATE EmailPageTemplate	;$contentCV[unique=true];uid[unique=true]		;active	;frontendTemplateName	;subject(code)							;htmlTemplate(code)		;restrictedPageTypes(code)
+                                   ;						;CustomerUpdateProfileEmailTemplate;true	;customerUpdateProfileEmail		;email-customerUpdateProfileSubject				;email-customerUpdateProfileBody	;EmailPage
+
+# Create Email Page
+INSERT_UPDATE EmailPage	;$contentCV[unique=true];uid[unique=true]	;masterTemplate(uid,$contentCV);approvalStatus(code)[default='approved']
+                           ;						;CustomerUpdateProfileEmail	;CustomerUpdateProfileEmailTemplate;
