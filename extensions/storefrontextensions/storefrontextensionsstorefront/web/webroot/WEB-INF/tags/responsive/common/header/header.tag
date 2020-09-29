@@ -39,6 +39,20 @@
 							</c:if>
 
 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+								<c:set var="maxNumberChars" value="255" />
+								<c:if test="${fn:length(user.companyName) gt maxNumberChars}">
+									<c:set target="${user}" property="companyName"
+										value="${fn:substring(user.companyName, 0, maxNumberChars)}..." />
+								</c:if>
+
+								<li class="logged_in js-logged_in">
+									<ycommerce:testId code="header_LoggedUser">
+										<spring:theme code="header.company" arguments="${user.companyName}" />
+									</ycommerce:testId>
+								</li>
+							</sec:authorize>
+
+							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 								<c:set var="maxNumberChars" value="25" />
 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}">
 									<c:set target="${user}" property="firstName"
