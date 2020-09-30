@@ -1,0 +1,11 @@
+INSERT_UPDATE SolrValueRangeSet;name[unique=true];qualifier;type;solrValueRanges(&rangeValueRefID)
+                               ;electronicsPriceRangeUSD;USD;double;rangeRefUSD1,rangeRefUSD2,rangeRefUSD3,rangeRefUSD4,rangeRefUSD5,rangeRefUSD6
+
+# Define price ranges
+INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
+                            ;rangeRefUSD1;electronicsPriceRangeUSD;      $0-$49.99;   0;  49.99
+                            ;rangeRefUSD2;electronicsPriceRangeUSD;    $50-$199.99;  50; 199.99
+                            ;rangeRefUSD3;electronicsPriceRangeUSD;   $200-$499.99; 200; 499.99
+                            ;rangeRefUSD4;electronicsPriceRangeUSD;   $500-$999.99; 500; 999.99
+                            ;rangeRefUSD5;electronicsPriceRangeUSD;   $1,000-$100,000; 1000; 100000
+                            ;rangeRefUSD6;electronicsPriceRangeUSD;   $1,000,000-$100,000,000; 1000000; 1000000000
