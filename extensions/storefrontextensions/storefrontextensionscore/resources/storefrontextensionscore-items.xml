@@ -137,5 +137,16 @@
             </itemtype>
         </typegroup>
 
+        <typegroup name="Customers">
+            <itemtype code="Customer"
+                      autocreate="false" generate="false">
+                <attributes>
+                    <attribute qualifier="companyName" type="java.lang.String">
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
     </itemtypes>
 </items>

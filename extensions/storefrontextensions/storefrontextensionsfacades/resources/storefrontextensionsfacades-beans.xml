@@ -19,4 +19,13 @@
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData"
+		  extends="de.hybris.platform.commercefacades.user.data.PrincipalData">
+		<property name="companyName" type="String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.RegisterData">
+		<property name="companyName" type="String"/>
+	</bean>
 </beans>
