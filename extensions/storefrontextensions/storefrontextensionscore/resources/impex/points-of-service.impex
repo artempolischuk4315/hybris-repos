@@ -1,0 +1,47 @@
+$storeUid=electronics
+$productCatalog=electronicsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$storeImage=storeImage(qualifier, $catalogVersion)
+
+
+$standardHours=standard-hours
+$weekendHours=weekend-hours
+
+INSERT_UPDATE OpeningSchedule;code[unique=true];
+                             ;$standardHours;
+                             ;$weekendHours;
+
+INSERT_UPDATE WeekdayOpeningDay;openingSchedule(code)[unique=true];dayOfWeek(code)[unique=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm];
+                               ;$standardHours;MONDAY   ; 09:00; 20:00
+                               ;$standardHours;TUESDAY  ; 09:00; 20:00
+                               ;$standardHours;WEDNESDAY; 09:00; 20:00
+                               ;$standardHours;THURSDAY ; 09:00; 20:00
+                               ;$standardHours;FRIDAY   ; 09:00; 20:00
+                               ;$standardHours;SATURDAY ; 10:00; 20:00
+
+                               ;$weekendHours;MONDAY   ; 09:00; 20:00
+                               ;$weekendHours;TUESDAY  ; 09:00; 20:00
+                               ;$weekendHours;WEDNESDAY; 09:00; 20:00
+                               ;$weekendHours;THURSDAY ; 09:00; 20:00
+                               ;$weekendHours;FRIDAY   ; 09:00; 20:00
+                               ;$weekendHours;SATURDAY ; 10:00; 20:00
+                               ;$weekendHours;SUNDAY   ; 10:00; 16:00
+
+INSERT_UPDATE Vendor;code[unique=true];name
+                    ;custom;Custom Vendor
+
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code);default;baseStores(uid)[default=$storeUid]
+                       ;custom-warehouse-1;Warehouse Custom1;custom;true;
+                       ;custom-warehouse-2;Warehouse Custom2;custom;true;
+
+INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];openingSchedule(code);basestore(uid)[default=$storeUid];features(code)
+                            ;CUSTOM1;STORE;addr1;33,544;133,6532;29-04-2025;$standardHours;
+                            ;CUSTOM2;STORE;addr2;33,643;133,74529;29-04-2025;$weekendHours;
+
+INSERT_UPDATE Address;&addrID;streetname;streetnumber;postalcode[unique=true];town[unique=true];country(isocode);region(isocode);phone1;owner(PointOfService.name)[unique=true]
+                     ;addr1;Street1;13;;Kyiv;UA;;+38 011110 1111;CUSTOM1
+                     ;addr2;Street2;20;;Kyiv;UA;;+38 045538 2234;CUSTOM2
+
+INSERT_UPDATE PoS2WarehouseRel;source(name)[unique=true];target(code)[unique=true]
+                              ;CUSTOM1;custom-warehouse-1
+                              ;CUSTOM2;custom-warehouse-2
