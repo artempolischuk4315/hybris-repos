@@ -1,0 +1,11 @@
+$catalogVersion=catalogVersion(catalog(id[default='electronicsProductCatalog']),version[default='Online'])[unique=true,default='electronicsProductCatalog:Online']
+$prices=europe1Prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+
+INSERT_UPDATE Product;code[unique=true];$catalogVersion;$prices;unit(code[default=pieces]);
+                     ;300938;electronicsProductCatalog:Online;1 pieces = 100 USD, 1 pieces = 90 EUR, 1 pieces = 80 GBP; pieces;
+
+INSERT_UPDATE PriceRow;productId[unique=true];unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];price;minqtd;unitFactor;net
+                      ;300938;pieces;USD;95;10;1;false
+                      ;300938;pieces;EUR;85;10;1;false
+                      ;300938;pieces;GBP;75;10;1;false
