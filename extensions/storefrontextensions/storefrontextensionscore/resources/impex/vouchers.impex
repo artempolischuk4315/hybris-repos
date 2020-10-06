@@ -1,0 +1,11 @@
+$lang=en
+$defaultPromoGrp=electronicsPromoGrp
+
+INSERT_UPDATE SingleCodeCoupon;couponId(id)[unique=true];maxRedemptionsPerCustomer;maxTotalRedemptions
+                              ;CUSTOM_SINGLE_CODE;1;100;
+
+INSERT_UPDATE MultiCodeCoupon;couponId(id)[unique=true];name[lang=$lang];codeGenerationConfiguration(name)
+                             ;CUSTOMMULTICODE;Custom multi-code coupon;default-configuration
+
+INSERT_UPDATE PromotionSourceRule;code[unique=true];name;description;website(Identifier)[default=$defaultPromoGrp];priority;ruleGroup(code);conditions;actions
+                                 ;custom_coupon_fixed_discount_25USD;Custom promotion rule 25USD;Custom promotion rule 25USD!;;35;couponPromotionRuleGroup;"[{""definitionId"":""y_cart_total"",""parameters"":{""value"":{""uuid"":""5ca4f584-51b6-4c6a-a8d6-2f82a0d416a9"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":250}},""operator"":{""uuid"":""6284470a-ed7b-4438-9c4a-9b6995e28de1"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]},{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""39d30f69-8ee1-44d8-a52b-bfe97b3fe5de"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""CUSTOM_SINGLE_CODE"",""CUSTOMMULTICODE""]}},""children"":[]},{""definitionId"":""y_target_customers"",""parameters"":{""customer_groups"":{""uuid"":""f945e8a9-5be4-4ebe-9819-51c50f10d1e9"",""type"":""List(ItemType(UserGroup))"",""value"":[""customergroup""]},""customer_groups_operator"":{""uuid"":""7b515a54-cbf4-4b74-a6ac-76367a5c6fa2"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""customers"":{""uuid"":""e626ce09-5f45-468c-83ec-70098c5c307c"",""type"":""List(ItemType(Customer))""},""excluded_customer_groups"":{""uuid"":""fe94a04c-6076-460c-94ef-7a0aff7ebc99"",""type"":""List(ItemType(UserGroup))""},""excluded_customers"":{""uuid"":""fe70d879-8647-4ff9-8fc4-e2377f57f104"",""type"":""List(ItemType(Customer))""}},""children"":[]}]";"[{""definitionId"":""y_order_fixed_discount"",""parameters"":{""value"":{""uuid"":""5b38ee08-d8f2-41e0-9304-05b5cab3f4cb"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":25.99}}}}]"
