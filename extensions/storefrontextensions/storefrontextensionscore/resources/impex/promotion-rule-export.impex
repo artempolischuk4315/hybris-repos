@@ -1,0 +1,8 @@
+"#% impex.setTargetFile( ""Rule.csv"" , true );"
+
+insert_update PromotionSourceRule; pk[unique=true]; code; name[lang=en];conditions;actions;website(Identifier);priority;ruleGroup(code)
+
+"#% impex.exportItems(""SELECT {P:pk} FROM {PromotionSourceRule as P} WHERE {P:code}='product_bundle_fixed_price_custom' "",
+
+
+Collections.EMPTY_MAP, Collections.singletonList( Item.class ), true, true, -1, -1  );"
