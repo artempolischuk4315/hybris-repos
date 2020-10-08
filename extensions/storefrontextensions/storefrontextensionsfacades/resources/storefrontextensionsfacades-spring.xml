@@ -188,24 +188,12 @@
 		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
 	</bean>
 
-	<bean id="customerUpdateProfileEmailContext"
-		  class="org.training.facades.process.email.context.CustomerUpdateProfileEmailContext"
-		  parent="customerEmailContext"
-		  scope="prototype" >
-	</bean>
-
 	<bean id="genderData" class="org.training.facades.product.data.GenderData" scope="prototype"/>
 
-
-	<bean id = "companyNamePopulator"
-		  class="org.training.facades.populators.CompanyNamePopulator"/>
+	<bean id="creditCardPopulator" class="org.training.facades.populators.CreditCardPopulator"/>
 
 	<bean parent="modifyPopulatorList">
-		<property name="list" ref="customerConverter" />
-		<property name="add" ref="companyNamePopulator" />
+		<property name="list" ref="creditCardPaymentInfoConverter"/>
+		<property name="add" ref="creditCardPopulator"/>
 	</bean>
-
-	<alias name="customCustomerFacade" alias="customerFacade"/>
-	<bean id="customCustomerFacade" class="org.training.facades.CustomCustomerFacade"
-		  parent="defaultCustomerFacade"/>
 </beans>

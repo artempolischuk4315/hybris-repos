@@ -111,37 +111,10 @@
             </itemtype>
         </typegroup>
 
-        <typegroup name="Processes">
-            <itemtype code="CustomerUpdateProfileEmailProcess" extends="StoreFrontCustomerProcess"
-                      jaloclass="org.training.jalo.process.CustomerUpdateProfileEmailProcess">
+        <typegroup name="CreditCard">
+            <itemtype code="CreditCardPaymentInfo" autocreate="false" generate="false">
                 <attributes>
-                    <attribute qualifier="firstName" type="java.lang.String">
-                        <persistence type="property" />
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
-
-        <typegroup name="CronJobs">
-            <itemtype code="CertainItemCacheInvalidationCronJob"
-                      extends="CronJob"
-                      jaloclass="org.training.jalo.CertainItemCacheInvalidationCronJob"
-                      autocreate="true" generate="true">
-                <attributes>
-                    <attribute qualifier="itemToInvalidate" type="Item">
-                        <modifiers read="true" write="true" optional="false" initial="true"/>
-                        <description>Cache of this item will be removed</description>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
-
-        <typegroup name="Customers">
-            <itemtype code="Customer"
-                      autocreate="false" generate="false">
-                <attributes>
-                    <attribute qualifier="companyName" type="java.lang.String">
+                    <attribute qualifier="cardOwner" type="java.lang.String">
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
