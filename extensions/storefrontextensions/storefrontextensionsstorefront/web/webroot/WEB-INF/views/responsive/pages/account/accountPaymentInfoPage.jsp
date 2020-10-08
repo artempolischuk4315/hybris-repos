@@ -38,6 +38,9 @@
                                     <c:if test="${paymentInfo.expiryMonth lt 10}">0</c:if>
                                         ${fn:escapeXml(paymentInfo.expiryMonth)}&nbsp;/&nbsp;${fn:escapeXml(paymentInfo.expiryYear)}
                                 </li>
+                                 <li>
+                                         ${fn:escapeXml(paymentInfo.cardOwner)}
+                                 </li>
                                 <c:if test="${paymentInfo.billingAddress ne null}">
                                     <li>${fn:escapeXml(paymentInfo.billingAddress.line1)}</li>
                                     <li>${fn:escapeXml(paymentInfo.billingAddress.town)}&nbsp;${fn:escapeXml(paymentInfo.billingAddress.region.isocodeShort)}</li>
